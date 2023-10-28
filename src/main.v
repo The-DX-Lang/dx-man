@@ -1,7 +1,7 @@
 module main
 
 import command_line { CliApplication, CliFlag }
-import commands { HelpCommand, ReplCommand }
+import commands { HelpCommand, ReplCommand, RunCommand }
 import os
 import log
 
@@ -11,7 +11,7 @@ fn main() {
 	application := CliApplication{
 		name: 'dx-man'
 		version: '0.0.0'
-		registered_commands: [HelpCommand{}, ReplCommand{}]
+		registered_commands: [HelpCommand{}, ReplCommand{}, RunCommand{}]
 		global_flags: [
 			CliFlag{
 				name: 'verbose'
