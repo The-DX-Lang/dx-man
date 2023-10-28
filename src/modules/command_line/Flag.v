@@ -7,6 +7,15 @@ pub:
 	aliases     []string
 }
 
+pub fn (this CliFlag) to_parsed_flag(value bool) ParsedCliFlag {
+	return ParsedCliFlag{
+		name: this.name
+		description: this.description
+		aliases: this.aliases
+		value: value
+	}
+}
+
 pub struct ParsedCliFlag {
 	CliFlag
 	value bool
