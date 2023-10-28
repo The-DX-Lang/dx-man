@@ -40,18 +40,33 @@ pub fn (this CliApplication) execute(command_line_arguments []string) {
 }
 
 pub fn determine_execution_context(command_line_arguments []string, parent_execution_context ExtendedCommandExecutionContext) ExtendedCommandExecutionContext {
+	mut new_execution_context := ExtendedCommandExecutionContext{
+		...parent_execution_context
+	}
+
 	if command_line_arguments.len == 0 {
 		log.debug('Returning current command execution context since no command line arguments are left')
 
-		return parent_execution_context
+		mut new_flags := parent_execution_context.flags.clone()
+
+		for flag in parent_execution_context.available_flags {
+			if flag.name in parent_execution_context.flags {
+				continue
+			}
+
+			new_flags[flag.name] = flag.to_parsed_flag(false)
+		}
+
+		new_execution_context = ExtendedCommandExecutionContext{
+			...parent_execution_context
+			flags: new_flags
+		}
+
+		return new_execution_context
 	}
 
 	first_command_line_argument := command_line_arguments[0]
 	next_arguments := command_line_arguments[1..]
-
-	mut new_execution_context := ExtendedCommandExecutionContext{
-		...parent_execution_context
-	}
 
 	if first_command_line_argument.starts_with('--') {
 		trimmed_name := first_command_line_argument.substr(2, first_command_line_argument.len)
