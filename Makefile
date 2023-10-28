@@ -1,6 +1,7 @@
 V_EXECUTABLE = v
 
 NODEMON_EXECUTABLE = npx nodemon
+NODEMON_BASE_COMMAND = ${NODEMON_EXECUTABLE} -w src -e v
 
 .PHONY: clean
 clean:
@@ -16,7 +17,7 @@ run:
 
 .PHONY: watch
 watch:
-	${NODEMON_EXECUTABLE} -w src -e v -x "make clear run || exit 1"
+	${NODEMON_BASE_COMMAND} -x "make clear run || exit 1"
 
 .PHONY: build-debug
 build-debug:
