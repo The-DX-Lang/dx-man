@@ -22,6 +22,7 @@ pub fn (this CliOption) parse(input string) ParsedCliOption {
 
 pub struct ParsedCliOption {
 	CliOption
+pub:
 	value ?string
 }
 

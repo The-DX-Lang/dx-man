@@ -18,6 +18,7 @@ pub fn (this CliFlag) to_parsed_flag(value bool) ParsedCliFlag {
 
 pub struct ParsedCliFlag {
 	CliFlag
+pub:
 	value bool
 }
 

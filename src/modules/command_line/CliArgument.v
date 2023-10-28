@@ -13,5 +13,6 @@ pub:
 
 pub struct ParsedCliArgument {
 	CliArgument
+pub:
 	value []string
 }
