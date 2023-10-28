@@ -16,6 +16,7 @@ fn main() {
 			CliFlag{
 				name: 'verbose'
 				aliases: ['v']
+				description: 'Enables verbose logging'
 			},
 		]
 	}
