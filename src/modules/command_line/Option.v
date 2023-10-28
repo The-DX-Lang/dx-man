@@ -1,13 +1,13 @@
 module command_line
 
-import string_parser { Parser }
+import string_parser { StringParser }
 
 pub struct CliOption {
 pub:
-	name        string                 [required]
+	name        string                       [required]
 	description string
 	aliases     []string
-	parser      Parser[string, string] [required]
+	parser      StringParser[string, string] [required]
 }
 
 pub fn (this CliOption) parse(input string) ParsedCliOption {

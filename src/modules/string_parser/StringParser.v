@@ -1,3 +1,3 @@
 module string_parser
 
-pub type Parser[T, U] = fn (T) ?U
+pub type StringParser[T, U] = fn (T) ?U

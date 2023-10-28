@@ -1,14 +1,14 @@
 module command_line
 
-import string_parser { Parser }
+import string_parser { StringParser }
 
 pub struct CliArgument {
 pub:
-	name        string                  [required]
+	name        string                        [required]
 	description string
 	is_required bool
 	is_variadic bool
-	parser      Parser[string, !string] [required]
+	parser      StringParser[string, !string] [required]
 }
 
 pub struct ParsedCliArgument {
