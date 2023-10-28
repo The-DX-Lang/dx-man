@@ -26,3 +26,11 @@ build-debug:
 .PHONY: build
 build:
 	${V_EXECUTABLE} build -o ./dx-man
+
+.PHONY: test
+test:
+	v  test ./src/
+
+.PHONY: watch-test
+watch-test:
+	${NODEMON_BASE_COMMAND} -x "make clear test || exit 1"
