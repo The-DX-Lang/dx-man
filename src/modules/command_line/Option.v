@@ -10,6 +10,16 @@ pub:
 	parser      Parser[string, string] [required]
 }
 
+pub fn (this CliOption) parse(input string) ParsedCliOption {
+	return ParsedCliOption{
+		name: this.name
+		description: this.description
+		aliases: this.aliases
+		parser: this.parser
+		value: this.parser(input)
+	}
+}
+
 pub struct ParsedCliOption {
 	CliOption
 	value ?string
