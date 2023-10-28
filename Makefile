@@ -2,6 +2,10 @@ V_EXECUTABLE = v
 
 NODEMON_EXECUTABLE = npx nodemon
 
+.PHONY: clean
+clean:
+	rm -f ./dx-man
+
 .PHONY: clear
 clear:
 	@cls || clear
