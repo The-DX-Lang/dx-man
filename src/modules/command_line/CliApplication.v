@@ -218,7 +218,13 @@ pub fn determine_execution_context(command_line_arguments []string, parent_execu
 		new_value = parent_execution_context.arguments[current_argument.name].value.clone()
 	}
 
-	new_value << [first_command_line_argument]
+	parsed_argument := current_argument.parser(first_command_line_argument) or {
+		log.warn('Could not parse "${first_command_line_argument}" to argument "${current_argument.name}"')
+
+		return determine_execution_context(next_arguments, new_execution_context)
+	}
+
+	new_value << [parsed_argument]
 
 	mut new_arguments := parent_execution_context.arguments.clone()
 	new_arguments[current_argument.name] = ParsedCliArgument{
