@@ -67,13 +67,7 @@ pub fn determine_execution_context(command_line_arguments []string, parent_execu
 			log.debug('Found cli option: ${type_asserted_option.name}')
 
 			mut new_options := parent_execution_context.options.clone()
-			new_options[type_asserted_option.name] = ParsedCliOption{
-				name: type_asserted_option.name
-				description: type_asserted_option.description
-				parser: type_asserted_option.parser
-				aliases: type_asserted_option.aliases
-				value: type_asserted_option.parser(next_arguments[0])
-			}
+			new_options[type_asserted_option.name] = type_asserted_option.parse(next_arguments[0])
 
 			new_execution_context = ExtendedCommandExecutionContext{
 				...parent_execution_context
@@ -93,12 +87,7 @@ pub fn determine_execution_context(command_line_arguments []string, parent_execu
 			log.debug('Found cli flag: ${type_asserted_flag.name}')
 
 			mut new_flags := parent_execution_context.flags.clone()
-			new_flags[type_asserted_flag.name] = ParsedCliFlag{
-				name: type_asserted_flag.name
-				description: type_asserted_flag.description
-				aliases: type_asserted_flag.aliases
-				value: true
-			}
+			new_flags[type_asserted_flag.name] = type_asserted_flag.to_parsed_flag(true)
 
 			new_execution_context = ExtendedCommandExecutionContext{
 				...parent_execution_context
@@ -124,13 +113,7 @@ pub fn determine_execution_context(command_line_arguments []string, parent_execu
 			log.debug('Found cli option: ${type_asserted_option.name}')
 
 			mut new_options := parent_execution_context.options.clone()
-			new_options[type_asserted_option.name] = ParsedCliOption{
-				name: type_asserted_option.name
-				description: type_asserted_option.description
-				parser: type_asserted_option.parser
-				aliases: type_asserted_option.aliases
-				value: type_asserted_option.parser(next_arguments[0])
-			}
+			new_options[type_asserted_option.name] = type_asserted_option.parse(next_arguments[0])
 
 			new_execution_context = ExtendedCommandExecutionContext{
 				...parent_execution_context
@@ -150,12 +133,7 @@ pub fn determine_execution_context(command_line_arguments []string, parent_execu
 			log.debug('Found cli flag: ${type_asserted_flag.name}')
 
 			mut new_flags := parent_execution_context.flags.clone()
-			new_flags[type_asserted_flag.name] = ParsedCliFlag{
-				name: type_asserted_flag.name
-				description: type_asserted_flag.description
-				aliases: type_asserted_flag.aliases
-				value: true
-			}
+			new_flags[type_asserted_flag.name] = type_asserted_flag.to_parsed_flag(true)
 
 			new_execution_context = ExtendedCommandExecutionContext{
 				...parent_execution_context
