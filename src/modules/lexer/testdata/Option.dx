@@ -1,0 +1,5 @@
+type None = None;
+
+type Some<T> = Some value: T;
+
+type Option<T> = None | Some<T>;
