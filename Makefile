@@ -21,11 +21,11 @@ watch:
 
 .PHONY: build-debug
 build-debug:
-	${V_EXECUTABLE} build -g -o ./dx-man
+	${V_EXECUTABLE} . -g -o ./dx-man
 
 .PHONY: build
 build:
-	${V_EXECUTABLE} build -o ./dx-man
+	${V_EXECUTABLE} . -o ./dx-man
 
 .PHONY: test
 test:
