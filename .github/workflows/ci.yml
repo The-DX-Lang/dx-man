@@ -24,7 +24,7 @@ jobs:
           v fmt -diff .
           v fmt -verify .          
       - name: Build ${{ github.event.repository.name }}
-        run: make build
+        run: v build -o ./dx-man
 
       - name: Run Tests
-        run: make test
+        run: v  test ./src/
