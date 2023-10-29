@@ -29,7 +29,7 @@ build:
 
 .PHONY: test
 test:
-	v  test ./src/
+	v test ./src/
 
 .PHONY: watch-test
 watch-test:
