@@ -1,6 +1,8 @@
 module commands
 
 import command_line { CliArgument, CliCommand, CliFlag, CliOption, CommandExecutionContext }
+import definitions { SourceFile }
+import lexer { Lexer }
 import log
 import string_parser { valid_file_parser }
 
@@ -52,4 +54,17 @@ pub fn (_ RunCommand) execute(commandExecutionContext CommandExecutionContext) ?
 	file_to_run := file_argument.value[0]
 
 	log.info('Running file: ${file_to_run}')
+
+	source_file := SourceFile.read_from_file(file_to_run) or {
+		log.error('Could not read source file: ${err.msg()}')
+
+		return
+	}
+
+	mut file_lexer := Lexer.new(source_file, definitions.dx_keywords)
+	tokens := file_lexer.tokenize() or {
+		log.error('Could not tokenize file: ${err}')
+
+		return
+	}
 }
